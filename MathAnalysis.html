@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hans" xml:lang="zh-Hans"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>数学分析</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="MathAnalysis_files/libs/clipboard/clipboard.min.js"></script>
+<script src="MathAnalysis_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="MathAnalysis_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="MathAnalysis_files/libs/quarto-html/popper.min.js"></script>
+<script src="MathAnalysis_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="MathAnalysis_files/libs/quarto-html/anchor.min.js"></script>
+<link href="MathAnalysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="MathAnalysis_files/libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="MathAnalysis_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="MathAnalysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="MathAnalysis_files/libs/bootstrap/bootstrap-215b371544c282197b31c8aa00ce3677.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="MathAnalysis_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="MathAnalysis_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="MathAnalysis_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+<div class="quarto-alternate-formats"><h2>其他格式</h2><ul><li><a href="MathAnalysis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">数学分析</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="极限" class="level1">
+<h1>极限</h1>
+<section id="实数" class="level2">
+<h2 class="anchored" data-anchor-id="实数">实数</h2>
+<section id="整数与有理数" class="level3">
+<h3 class="anchored" data-anchor-id="整数与有理数">整数与有理数</h3>
+<p>通常用 <span class="math inline">\(\mathbb{N}\)</span> 表示自然数集 <span class="math display">\[
+\mathbb{N} = \{0,1,2,3,\cdots\}
+\]</span> 自然数集对加法运算封闭 (<a href="#def-closure" class="quarto-xref">定义&nbsp;1</a>) ，对减法运算不封闭</p>
+<p>整数集对减法封闭 <span class="math display">\[
+\mathbb{Z} = \{0,\pm1,\pm2,\pm3,\cdots\}
+\]</span> 整数集对乘法运算，对除法运算不封闭</p>
+<p>在整数集中添加两个整数的商，就得到了有理数集 <span class="math display">\[
+\mathbb{Q} =\left\{\frac{p}{q}\middle|p,q \in \mathbb{Z},q \neq 0\right\}
+\]</span> 它对加减乘除四则运算封闭，也称 <span class="math inline">\(\mathbb{Q}\)</span> 为有理数<strong>域</strong>（<a href="#def-field" class="quarto-xref">定义&nbsp;2</a>）</p>
+<p>有理数具有稠密性（<a href="#def-dense-in-R" class="quarto-xref">定义&nbsp;3</a>）</p>
+<div id="def-closure" class="theorem definition">
+<p><span class="theorem-title"><strong>定义 1</strong></span> <strong>封闭性</strong></p>
+<p>设 <span class="math inline">\(S\)</span> 是一个非空集合，<span class="math inline">\(\circ\)</span> 是定义在 <span class="math inline">\(S\)</span> 上的一种运算。</p>
+<p>若 <span class="math inline">\(\forall a,b \in S ,都有 a \circ b \in S\)</span></p>
+<p>则称集合 <span class="math inline">\(S\)</span> 对该运算 <span class="math inline">\(\circ\)</span> 是<strong>封闭的</strong>，或称 <span class="math inline">\(S\)</span> 具有<strong>封闭性</strong></p>
+</div>
+<div id="def-field" class="theorem definition">
+<p><span class="theorem-title"><strong>定义 2</strong></span> <strong>域</strong></p>
+<p>设 <span class="math inline">\(\mathbb{F}\)</span> 是一个包含至少两个元素的集合，在 <span class="math inline">\(\mathbb{F}\)</span> 上定义了两个运算：加法 <span class="math inline">\(\oplus\)</span> 和乘法 <span class="math inline">\(\otimes\)</span>。如果对于 <span class="math inline">\(\forall a,b,c \in \mathbb{F}\)</span>，满足以下三大类<strong>域公理</strong>，则称 <span class="math inline">\(\mathbb{F}\)</span> 为一个<strong>域</strong>。</p>
+<p><strong>（一）加法公理</strong></p>
+<ol type="1">
+<li><strong>封闭性</strong>：<span class="math inline">\(a \oplus b \in \mathbb{F}\)</span></li>
+<li><strong>交换律</strong>：<span class="math inline">\(a \oplus b = b \oplus a\)</span></li>
+<li><strong>结合律</strong>：<span class="math inline">\((a \oplus b)\oplus c = a \oplus(b \oplus c)\)</span></li>
+<li><strong>单位元</strong>：存在元素 <span class="math inline">\(0 \in \mathbb{F},\text{ s.t. }a \oplus 0 = a\)</span></li>
+<li><strong>逆元</strong>：存在元素 <span class="math inline">\(-a \in \mathbb{F},\text{ s.t. }a \oplus (-a) = 0\)</span></li>
+</ol>
+<p><strong>（二）乘法公理</strong></p>
+<ol start="6" type="1">
+<li><strong>封闭性</strong>：<span class="math inline">\(a \otimes b \in \mathbb{F}\)</span></li>
+<li><strong>交换律</strong>：<span class="math inline">\(a \otimes b = b \otimes a\)</span></li>
+<li><strong>结合律</strong>：<span class="math inline">\((a \otimes b) \otimes c = a \otimes(b \otimes c)\)</span></li>
+<li><strong>单位元</strong>：存在元素 <span class="math inline">\(1 \in \mathbb{F},\text{ s.t. }a \otimes 1 = a\)</span></li>
+<li><strong>逆元</strong>：若 <span class="math inline">\(a \neq 0\)</span>,则存在元素 <span class="math inline">\(a^{-1} \in \mathbb{F},\text{ s.t. }a \otimes a^{-1} = 1\)</span></li>
+</ol>
+<p><strong>（三）分配律</strong></p>
+<ol start="11" type="1">
+<li><strong>乘法对加法的分配律</strong>：<span class="math inline">\(a \otimes (b \oplus c)= a \otimes b \oplus a \otimes c\)</span></li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+注记
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>这里的加法 <span class="math inline">\(\oplus\)</span> 和乘法 <span class="math inline">\(\otimes\)</span> 不一定是经典认知上的 <span class="math inline">\(+\)</span> 和 <span class="math inline">\(\times\)</span> ，而也可以是其他运算，加法单位元和乘法单位元也不一定是0和1，比如：对于正实数集 <span class="math inline">\(\mathbb{R}_+\)</span>,在其中定义加法及乘法运算为 <span class="math display">\[
+a \oplus b = ab\quad(a,b \in \mathbb{R}_+) \\
+a \otimes b = a^b\quad(a,b \in \mathbb{R}_+)
+\]</span> 可以验证这种情况下， <span class="math inline">\(\mathbb{R}_+\)</span> 是一个域，其加法单位元为1，乘法单位元也为1。</p>
+</div>
+</div>
+<div id="def-dense-in-R" class="theorem definition">
+<p><span class="theorem-title"><strong>定义 3</strong></span> <strong>（狭义）稠密性</strong> 设 <span class="math inline">\(S\)</span> 是实数集 <span class="math inline">\(\mathbb{R}\)</span> 的一个子集。若 <span class="math display">\[
+\forall a,b \in S,a \neq b,\exists c \in S,\text{s.t.} a&lt;c&lt;b
+\]</span> 则称集合 <span class="math inline">\(S\)</span> 在 <span class="math inline">\(\mathbb{R}\)</span> 中<strong>稠密</strong>，或者称 <span class="math inline">\(S\)</span> 具有<strong>稠密性</strong></p>
+</div>
+</section>
+<section id="十进制小数" class="level3">
+<h3 class="anchored" data-anchor-id="十进制小数">十进制小数</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[十进制小数] --&gt; B[有限小数]
+    A --&gt; C[无限小数]
+
+    B --&gt;|属于| D((有理数集 Q))
+    C --&gt; E[循环小数]
+    C --&gt; F[不循环小数]
+
+    E --&gt;|属于| D
+    F --&gt;|属于| G((无理数集 R\Q))
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="实数域" class="level3">
+<h3 class="anchored" data-anchor-id="实数域">实数域</h3>
+<p>实数域是对有理数域的扩充，除了对四则运算封闭外，还具有完备性(<a href="#def-completeness" class="quarto-xref">定义&nbsp;4</a>)。</p>
+<p>同时，实数域还是一个有序域。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+注记
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>实数集 <span class="math inline">\(\mathbb{R}\)</span> 由下列四组公理严格刻画：</p>
+<ol type="1">
+<li><strong>域公理</strong>（<a href="#def-field" class="quarto-xref">定义&nbsp;2</a>）</li>
+<li><strong>序公理</strong>（<a href="#def-order-axioms" class="quarto-xref">定义&nbsp;5</a>）</li>
+<li><strong>阿基米德公理</strong>（<a href="#def-archimedean" class="quarto-xref">定义&nbsp;6</a>）</li>
+<li><strong>完备性公理</strong>（<a href="#def-completeness" class="quarto-xref">定义&nbsp;4</a>）</li>
+</ol>
+</div>
+</div>
+<div id="def-completeness" class="theorem definition">
+<p><span class="theorem-title"><strong>定义 4</strong></span> 设 <span class="math inline">\(X\)</span> 和 <span class="math inline">\(Y\)</span> 是实数集 <span class="math inline">\(\mathbb{R}\)</span> 的两个非空子集，并满足对于任意 <span class="math inline">\(x \in X,y \in Y\)</span>, 有 <span class="math inline">\(x \le y\)</span>,那么 <span class="math inline">\(\exists c \in \mathbb{R},\text{s.t.}\forall x \in X,y \in Y,x \le c \le y\)</span>.</p>
+</div>
+<div id="def-order-axioms" class="theorem definition">
+<p><span class="theorem-title"><strong>定义 5</strong></span> <strong>序公理</strong> 设 <span class="math inline">\(\mathbb{R}\)</span> 是一个域，如果在 <span class="math inline">\(\mathbb{R}\)</span> 上定义了一个二元关系“ <span class="math inline">\(\le\)</span> ”,且对于任意 <span class="math inline">\(a,b,c \in \mathbb{R}\)</span>,满足以下四条规则，则称 <span class="math inline">\(\mathbb{R}\)</span> 为一个<strong>有序域</strong></p>
+<ol type="1">
+<li><strong>三岐性</strong>：<span class="math inline">\(\forall a,b \in \mathbb{R}\)</span>，有且满足以下三个式子之一： <span class="math display">\[
+a &lt; b,a = b,a &gt; b
+\]</span></li>
+<li><strong>传递性</strong>：若 <span class="math inline">\(a \le b,b \le c\)</span>,那么 <span class="math inline">\(a \le c\)</span>.</li>
+<li><strong>加法保序性</strong>：若 <span class="math inline">\(a \le b,c \in \mathbb{R}\)</span>，那么有： <span class="math display">\[
+a + c \le b + c
+\]</span></li>
+<li><strong>乘法保序性</strong>：若 <span class="math inline">\(a \le b,c \in \mathbb{R},c &gt; 0\)</span>,那么有： <span class="math display">\[
+a \cdot c \le b \cdot c
+\]</span></li>
+</ol>
+</div>
+<div id="def-archimedean" class="theorem definition">
+<p><span class="theorem-title"><strong>定义 6</strong></span> <strong>阿基米德公理</strong></p>
+<p><span class="math display">\[
+\forall a,b &gt; 0,\exists n \in \mathbb{N},\text{s.t.}\quad n \cdot a &gt; b
+\]</span></p>
+</div>
+</section>
+<section id="数轴" class="level3">
+<h3 class="anchored" data-anchor-id="数轴">数轴</h3>
+<p>在直线 <span class="math inline">\(l\)</span> 上标定一个<strong>原点</strong>，并规定一个<strong>正方向</strong>，取一个长度为<strong>单位长</strong>。 指定了原点、方向和单位长的直线称为<strong>数轴</strong>。</p>
+<div id="71cf6fcb" class="cell" data-fig-height="1.5" data-fig-width="6" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="MathAnalysis_files/figure-html/cell-2-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="540" height="389"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>数轴上的点与实数一一对应,与点对应的数也称点的<strong>坐标</strong></p>
+<p>数轴上一点 <span class="math inline">\(A\)</span> 到原点 <span class="math inline">\(O\)</span> 的距离就是对应实数的绝对值 <span class="math inline">\(|a|\)</span>.绝对值满足</p>
+<ol type="1">
+<li><span class="math inline">\(|a| \ge 0\)</span>,当且仅当 <span class="math inline">\(a = 0\)</span> 时等式成立，即正定性。</li>
+<li><span class="math inline">\(|a - b| = |b - a|\)</span>,即对称性。</li>
+<li><span class="math inline">\(\lvert |a| - |b| \rvert \le |a + b| \le |a| + |b|\)</span>,即三角不等式。</li>
+</ol>
+<p>设 <span class="math inline">\(a,b \in \mathbb{R},a &lt; b\)</span>，集合 <span class="math inline">\((a,b)=\{x \in \mathbb{R}|a &lt; x &lt; b\}\)</span> 称为以 <span class="math inline">\(a,b\)</span> 为端点的<strong>开区间</strong>，集合 <span class="math inline">\([a,b] = \{x \in \mathbb{R}|a \le x \le b\}\)</span> 称为以 <span class="math inline">\(a,b\)</span> 为端点的<strong>闭区间</strong>，同样可以定义半开半闭区间 <span class="math display">\[
+(a,b] = \{x \in \mathbb{R}|a &lt; x \le b\},\quad[a,b) = \{x \in \mathbb{R}|a \le x &lt; b\}
+\]</span></p>
+<p>记号“<span class="math inline">\(\infty\)</span>”称为“无穷”，“<span class="math inline">\(+\infty\)</span>”称为“正无穷”，“<span class="math inline">\(-\infty\)</span>”称为“负无穷”，无穷不是一个数。</p>
+<p>以一个点为中心的开区间 <span class="math inline">\((a - \delta,a + \delta) = \{x| |x - a| &lt; \delta\}\)</span>，称为 <span class="math inline">\(a\)</span> 的一个<strong>邻域</strong>，记作 <span class="math inline">\(U(a,\delta)\)</span>,而用 <span class="math inline">\(\{x|0&lt;|x-a|&lt;\delta\}\)</span> 表示<strong>去心邻域</strong>，记作 <span class="math inline">\(\mathring{U}(a,\delta)\)</span>,有时用它来刻画在点 <span class="math inline">\(a\)</span> 附近。</p>
+<!--
+**粗体**
+
+*注意*
+
+- 第一
+- 第二
+- 第三
+
+1. 第一
+2. 第二
+3. 第三
+
+$E = mc^2$
+
+$$
+F = ma
+$$
+
+$$
+\begin{aligned}
+x^2 - 4x + 3 &= 0 \\
+(x - 3)(x - 1) &= 0 \\
+\end{aligned}
+$$
+
+>114514
+
+' print(114514) '
+
+:::{#def-001}
+this is a label test.
+:::
+
+go to the label @def-001
+-->
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "已复制");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "已复制");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

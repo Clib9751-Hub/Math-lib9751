@@ -1,0 +1,328 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  chinese-hans,
+]{ctexart}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off,provide=*]{babel}
+\else
+\usepackage[bidi=default,shorthands=off,provide=*]{babel}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{目录}
+\else
+  \newcommand\contentsname{目录}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{图索引}
+\else
+  \newcommand\listfigurename{图索引}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{表索引}
+\else
+  \newcommand\listtablename{表索引}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{图}
+\else
+  \newcommand\figurename{图}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{表}
+\else
+  \newcommand\tablename{表}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{列表}
+\newcommand*\listoflistings{\listof{codelisting}{列表索引}}
+\captionsetup{labelsep=period}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{definition}{定义}[section]
+\theoremstyle{remark}
+\AtBeginDocument{\renewcommand*{\proofname}{证明}}
+\newtheorem*{remark}{注记}
+\newtheorem*{solution}{解}
+\newtheorem{refremark}{注记}[section]
+\newtheorem{refsolution}{解}[section]
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
+\hypersetup{
+  pdftitle={数学分析},
+  pdflang={zh-Hans},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{数学分析}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+
+\section{极限}\label{ux6781ux9650}
+
+\subsection{实数}\label{ux5b9eux6570}
+
+\subsubsection{整数与有理数}\label{ux6574ux6570ux4e0eux6709ux7406ux6570}
+
+通常用 \(\mathbb{N}\) 表示自然数集 \[
+\mathbb{N} = \{0,1,2,3,\cdots\}
+\] 自然数集对加法运算封闭 (定义~\ref{def-closure}) ，对减法运算不封闭
+
+整数集对减法封闭 \[
+\mathbb{Z} = \{0,\pm1,\pm2,\pm3,\cdots\}
+\] 整数集对乘法运算，对除法运算不封闭
+
+在整数集中添加两个整数的商，就得到了有理数集 \[
+\mathbb{Q} =\left\{\frac{p}{q}\middle|p,q \in \mathbb{Z},q \neq 0\right\}
+\] 它对加减乘除四则运算封闭，也称 \(\mathbb{Q}\) 为有理数域
+
+有理数具有稠密性（定义~\ref{def-dense-in-R}）
+
+\begin{definition}[]\protect\hypertarget{def-closure}{}\label{def-closure}
+
+\textbf{封闭性}
+
+设 \(S\) 是一个非空集合，\(\circ\) 是定义在 \(S\) 上的一种运算。
+
+若 \(\forall a,b \in S ,都有 a \circ b \in S\)
+
+则称集合 \(S\) 对该运算 \(\circ\) 是\textbf{封闭的}，或称 \(S\)
+具有\textbf{封闭性}
+
+\end{definition}
+
+\begin{definition}[]\protect\hypertarget{def-field}{}\label{def-field}
+
+\textbf{域}
+
+设 \(\mathbb{F}\) 是一个包含至少两个元素的集合，在 \(\mathbb{F}\)
+上定义了两个运算：加法 \(\oplus\) 和乘法 \(\otimes\)。如果对于
+\(\forall a,b,c \in \mathbb{F}\)，满足以下三大类\textbf{域公理}，则称
+\(\mathbb{F}\) 为一个\textbf{域}。
+
+\textbf{（一）加法公理}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{封闭性}：\(a \oplus b \in \mathbb{F}\)
+\item
+  \textbf{交换律}：\(a \oplus b = b \oplus a\)
+\item
+  \textbf{结合律}：\((a \oplus b)\oplus c = a \oplus(b \oplus c)\)
+\item
+  \textbf{单位元}：存在元素
+  \(0 \in \mathbb{F},\text{ s.t. }a \oplus 0 = a\)
+\item
+  \textbf{逆元}：存在元素
+  \(-a \in \mathbb{F},\text{ s.t. }a \oplus (-a) = 0\)
+\end{enumerate}
+
+\textbf{（二）乘法公理}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  \textbf{封闭性}：\(a \otimes b \in \mathbb{F}\)
+\item
+  \textbf{交换律}：\(a \otimes b = b \otimes a\)
+\item
+  \textbf{结合律}：\((a \otimes b) \otimes c = a \otimes(b \otimes c)\)
+\item
+  \textbf{单位元}：存在元素
+  \(1 \in \mathbb{F},\text{ s.t. }a \otimes 1 = a\)
+\item
+  \textbf{逆元}：若 \(a \neq 0\),则存在元素
+  \(a^{-1} \in \mathbb{F},\text{ s.t. }a \otimes a^{-1} = 1\)
+\end{enumerate}
+
+\textbf{（三）分配律}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{10}
+\tightlist
+\item
+  \textbf{乘法对加法的分配律}：\(a \otimes (b \oplus c)= a \otimes b \oplus a \otimes c\)
+\end{enumerate}
+
+\end{definition}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{注记}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+这里的加法 \(\oplus\) 和乘法 \(\otimes\) 不一定是经典认知上的 \(+\) 和
+\(\times\)
+，而也可以是其他运算，加法单位元和乘法单位元也不一定是0和1，比如：对于正实数集
+\(\mathbb{R}_+\),在其中定义加法及乘法运算为 \[
+a \oplus b = ab\quad(a,b \in \mathbb{R}_+) \\
+a \otimes b = a^b\quad(a,b \in \mathbb{R}_+)
+\] 可以验证这种情况下， \(\mathbb{R}_+\)
+是一个域，其加法单位元为1，乘法单位元也为1。
+
+\end{tcolorbox}
+
+\begin{definition}[]\protect\hypertarget{def-dense-in-R}{}\label{def-dense-in-R}
+
+\textbf{（狭义）稠密性} 设 \(S\) 是实数集 \(\mathbb{R}\) 的一个子集。若
+\[
+\forall a,b \in S,a\neq b,\exists c \in S,\text{s.t.} a<c<b
+\] 则称集合 \(S\) 在 \(\mathbb{R}\) 中\textbf{稠密}，或者称 \(S\)
+具有\textbf{稠密性}
+
+\end{definition}
+
+
+
+
+\end{document}

@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.jj": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/c:\\Users\\34904\\Desktop\\quarto\\MathAnalysis.aux": true,
+        "**/c:\\Users\\34904\\Desktop\\quarto\\MathAnalysis.log": true,
+        "**/c:\\Users\\34904\\Desktop\\quarto\\MathAnalysis.gz": true,
+        "**/c:\\Users\\34904\\Desktop\\quarto\\MathAnalysis.out": true
+    }
+}
